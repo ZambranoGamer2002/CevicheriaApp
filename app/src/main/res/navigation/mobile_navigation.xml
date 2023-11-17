@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.mycevicheriaapp.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_reservas"
+        android:name="com.example.mycevicheriaapp.ui.gallery.ReservasFragment"
+        android:label="@string/mis_reservas"
+        tools:layout="@layout/fragment_reservas" />
+
+    <fragment
+        android:id="@+id/nav_compras"
+        android:name="com.example.mycevicheriaapp.ui.slideshow.ComprasFragment"
+        android:label="@string/mis_compras"
+        tools:layout="@layout/fragment_compras" />
+</navigation>
