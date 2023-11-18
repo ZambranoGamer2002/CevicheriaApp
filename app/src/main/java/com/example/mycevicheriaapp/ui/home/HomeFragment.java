@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -45,6 +46,7 @@ public class HomeFragment extends Fragment implements UpdateVerticalRec {
 
         homeCevicheModelList = new ArrayList<>();
 
+
         //Colocar la respectiva carta a elegir
         homeCevicheModelList.add(new HomeCevicheModel(R.drawable.ceviches_img,"Ceviches"));
         homeCevicheModelList.add(new HomeCevicheModel(R.drawable.combos_img,"Combos"));
@@ -54,7 +56,14 @@ public class HomeFragment extends Fragment implements UpdateVerticalRec {
 
 
 
-        homeCevicheAdapter = new HomeCevicheAdapter(this, getActivity(), homeCevicheModelList);
+        homeCevicheAdapter = new HomeCevicheAdapter(this, getActivity(), homeCevicheModelList,new HomeCevicheAdapter.OnItemClickLister(){
+            @Override
+            public void OnItemClick(String Item) {
+                onItemSelected(Item);
+            }
+        });
+        
+        
         homeHorizontalRec.setAdapter(homeCevicheAdapter);
         homeHorizontalRec.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
         homeHorizontalRec.setHasFixedSize(true);
@@ -74,6 +83,12 @@ public class HomeFragment extends Fragment implements UpdateVerticalRec {
 
 
         return root;
+    }
+
+    private void onItemSelected(String item) {
+
+        Toast.makeText(requireActivity(), item, Toast.LENGTH_SHORT).show();
+        System.out.printf("DelPrada");
     }
 
     @Override

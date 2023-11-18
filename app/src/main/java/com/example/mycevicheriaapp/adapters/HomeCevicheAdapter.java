@@ -21,17 +21,25 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
+import kotlinx.coroutines.selects.SelectInstance;
+
 public class HomeCevicheAdapter extends RecyclerView.Adapter<HomeCevicheAdapter.ViewHolder> {
 
     UpdateVerticalRec updateVerticalRec;
     Activity activity;
     ArrayList<HomeCevicheModel> list;
+
+    public interface OnItemClickLister {void OnItemClick(String Item);}
     int row_index = -1;
 
-    public HomeCevicheAdapter(UpdateVerticalRec updateVerticalRec, Activity activity, ArrayList<HomeCevicheModel> list) {
+    OnItemClickLister listener;
+
+
+    public HomeCevicheAdapter(UpdateVerticalRec updateVerticalRec, Activity activity, ArrayList<HomeCevicheModel> list, OnItemClickLister listener) {
         this.updateVerticalRec = updateVerticalRec;
         this.activity = activity;
         this.list = list;
+        this.listener = listener;
     }
 
     @NonNull
@@ -44,6 +52,8 @@ public class HomeCevicheAdapter extends RecyclerView.Adapter<HomeCevicheAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.imageView.setImageResource(list.get(position).getImage());
         holder.name.setText(list.get(position).getName());
+        // Obtén el elemento actual de la lista
+        HomeCevicheModel selectedItem = list.get(position);
 
         // Lógica de selección de fondo
         if (row_index == position) {
@@ -59,9 +69,7 @@ public class HomeCevicheAdapter extends RecyclerView.Adapter<HomeCevicheAdapter.
                 row_index = position;
                 notifyDataSetChanged();
 
-                // Obtén el elemento actual de la lista
-                HomeCevicheModel selectedItem = list.get(position);
-
+                listener.OnItemClick(selectedItem.getName());
 
                 // Lógica para determinar qué tipo de plato fue seleccionado
                 if (selectedItem.getName().equals("Ceviches")) {

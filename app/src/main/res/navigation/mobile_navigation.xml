@@ -12,14 +12,29 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_reservas"
+        android:id="@+id/nav_reservar"
         android:name="com.example.mycevicheriaapp.ui.gallery.ReservasFragment"
-        android:label="@string/mis_reservas"
-        tools:layout="@layout/fragment_reservas" />
+        android:label="@string/reservar"
+        tools:layout="@layout/fragment_reservar" />
 
     <fragment
-        android:id="@+id/nav_compras"
-        android:name="com.example.mycevicheriaapp.ui.slideshow.ComprasFragment"
+        android:id="@+id/nav_canasta"
+        android:name="com.example.mycevicheriaapp.ui.slideshow.CanastaFragment"
+        android:label="@string/mi_canasta"
+        tools:layout="@layout/fragment_canasta" />
+    <fragment
+        android:id="@+id/nav_mis_reservar"
+        android:name="com.example.mycevicheriaapp.ui.Navegacion.MisReservasFragment"
+        android:label="@string/mis_reservas"
+        tools:layout="@layout/fragment_mis_reservas" />
+    <fragment
+        android:id="@+id/nav_mis_compras"
+        android:name="com.example.mycevicheriaapp.ui.Navegacion.MisComprasFragment"
         android:label="@string/mis_compras"
-        tools:layout="@layout/fragment_compras" />
+        tools:layout="@layout/fragment_mis_compras" />
+    <fragment
+        android:id="@+id/nav_pefil_usa"
+        android:name="com.example.mycevicheriaapp.ui.Navegacion.PefilUsarioFragment"
+        android:label="@string/mi_pefil_usu"
+        tools:layout="@layout/fragment_pefil_usario" />
 </navigation>

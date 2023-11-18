@@ -4,17 +4,50 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
+
+
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/home"
             android:title="@string/menu_home" />
         <item
-            android:id="@+id/nav_reservas"
-            android:icon="@drawable/calendario_fecha"
-            android:title="@string/mis_reservas" />
+            android:id="@+id/nav_reservar"
+            android:icon="@drawable/reservar"
+            android:title="@string/reservar" />
         <item
-            android:id="@+id/nav_compras"
-            android:icon="@drawable/miscompras"
-            android:title="@string/mis_compras" />
+            android:id="@+id/nav_canasta"
+            android:icon="@drawable/canasta"
+            android:title="@string/mi_canasta" />
+
+
     </group>
+    <item
+        android:title="">
+        <menu>
+            <item
+                android:id="@+id/nav_mis_reservar"
+                android:icon="@drawable/calendario_fecha"
+                android:title="@string/mis_reservas" />
+            <item
+                android:id="@+id/nav_mis_compras"
+                android:icon="@drawable/miscompras"
+                android:title="@string/mis_compras" />
+        </menu>
+    </item>
+
+    <group>
+        <item
+            android:title="">
+            <menu>
+                <item
+                    android:id="@+id/nav_pefil_usa"
+                    android:icon="@drawable/pefil_usua"
+                    android:title="@string/mi_pefil_usu" />
+
+            </menu>
+        </item>
+
+
+    </group>
+
 </menu>
