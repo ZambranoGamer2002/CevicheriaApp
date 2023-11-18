@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -67,13 +68,13 @@ public class LoginActivity extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        String usuarioBd;
                         try {
                             String valor = response.get("Detalles").toString();
                             JSONArray arreglo = new JSONArray(valor);
                             JSONObject objeto = new JSONObject(arreglo.get(0).toString());
 
-                            usuarioBd = objeto.getString("usa_usanombre");
+                            String usuarioBd = objeto.getString("usa_usanombre");
+                            guardarDatosUsuario(usuarioBd);
 
                             //A donde quiero que se vaya
                             Intent pasarMainActivity = new Intent(context, MainActivity.class);
@@ -81,7 +82,6 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(pasarMainActivity);
 
                             Toast.makeText(getApplicationContext(), "Bienvenido " + usuarioBd, Toast.LENGTH_SHORT).show();
-
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -99,8 +99,21 @@ public class LoginActivity extends AppCompatActivity {
 
         );
         requestQueue.add(jsonObjectRequest);
-
     }
+
+    private void guardarDatosUsuario(String usuarioBd) {
+        // Obtener la instancia de SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("MisDatosUsuario", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        // Guardar el nombre de usuario en SharedPreferences
+        editor.putString("usuario", usuarioBd);
+
+        // Puedes guardar más datos del usuario aquí según tus necesidades
+
+        editor.apply();  // Aplicar cambios
+    }
+
 
     public void pasarRegister(View view) {
 

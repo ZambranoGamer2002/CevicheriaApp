@@ -1,4 +1,4 @@
-package com.example.mycevicheriaapp.ui.gallery;
+package com.example.mycevicheriaapp.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

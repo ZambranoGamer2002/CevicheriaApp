@@ -1,11 +1,11 @@
 package com.example.mycevicheriaapp.models;
 
-public class HomeCevicheModel {
+public class HomeHorModel {
 
     int image;
     String name;
 
-    public HomeCevicheModel (int image, String name) {
+    public HomeHorModel(int image, String name) {
 
         this.image = image;
         this.name = name;

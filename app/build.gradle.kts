@@ -45,6 +45,7 @@ dependencies {
     implementation ("com.airbnb.android:lottie:3.4.0") /*ANIMACIONES*/
     implementation ("com.google.code.gson:gson:2.9.1")
     implementation("androidx.gridlayout:gridlayout:1.0.0") /* FORMATO JSON */
+    implementation ("com.github.bumptech.glide:glide:4.12.0")/* MEJORA LAS IMAGENES*/
 
     implementation ("com.android.volley:volley:1.2.1")
     implementation("androidx.appcompat:appcompat:1.6.1")

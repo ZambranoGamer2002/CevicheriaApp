@@ -1,8 +1,6 @@
 package com.example.mycevicheriaapp.adapters;
 
 import android.app.Activity;
-import android.content.Context;
-import android.telephony.BarringInfo;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,20 +12,16 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mycevicheriaapp.R;
-import com.example.mycevicheriaapp.models.HomeCevicheModel;
+import com.example.mycevicheriaapp.models.HomeHorModel;
 import com.example.mycevicheriaapp.models.HomeVerModel;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
-
-import kotlinx.coroutines.selects.SelectInstance;
 
 public class HomeCevicheAdapter extends RecyclerView.Adapter<HomeCevicheAdapter.ViewHolder> {
 
     UpdateVerticalRec updateVerticalRec;
     Activity activity;
-    ArrayList<HomeCevicheModel> list;
+    ArrayList<HomeHorModel> list;
 
     public interface OnItemClickLister {void OnItemClick(String Item);}
     int row_index = -1;
@@ -35,7 +29,7 @@ public class HomeCevicheAdapter extends RecyclerView.Adapter<HomeCevicheAdapter.
     OnItemClickLister listener;
 
 
-    public HomeCevicheAdapter(UpdateVerticalRec updateVerticalRec, Activity activity, ArrayList<HomeCevicheModel> list, OnItemClickLister listener) {
+    public HomeCevicheAdapter(UpdateVerticalRec updateVerticalRec, Activity activity, ArrayList<HomeHorModel> list, OnItemClickLister listener) {
         this.updateVerticalRec = updateVerticalRec;
         this.activity = activity;
         this.list = list;
@@ -53,7 +47,7 @@ public class HomeCevicheAdapter extends RecyclerView.Adapter<HomeCevicheAdapter.
         holder.imageView.setImageResource(list.get(position).getImage());
         holder.name.setText(list.get(position).getName());
         // Obtén el elemento actual de la lista
-        HomeCevicheModel selectedItem = list.get(position);
+        HomeHorModel selectedItem = list.get(position);
 
         // Lógica de selección de fondo
         if (row_index == position) {

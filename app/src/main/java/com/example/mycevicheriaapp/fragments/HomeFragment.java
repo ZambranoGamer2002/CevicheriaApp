@@ -1,4 +1,4 @@
-package com.example.mycevicheriaapp.ui.home;
+package com.example.mycevicheriaapp.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,7 +16,7 @@ import com.example.mycevicheriaapp.adapters.HomeCevicheAdapter;
 import com.example.mycevicheriaapp.adapters.HomeVerAdapter;
 import com.example.mycevicheriaapp.adapters.UpdateVerticalRec;
 import com.example.mycevicheriaapp.databinding.FragmentHomeBinding;
-import com.example.mycevicheriaapp.models.HomeCevicheModel;
+import com.example.mycevicheriaapp.models.HomeHorModel;
 import com.example.mycevicheriaapp.models.HomeVerModel;
 
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public class HomeFragment extends Fragment implements UpdateVerticalRec {
 
     RecyclerView homeHorizontalRec, homeVerticalRec;
-    ArrayList<HomeCevicheModel> homeCevicheModelList;
+    ArrayList<HomeHorModel> homeHorModelList;
     HomeCevicheAdapter homeCevicheAdapter;
 
     //Vertical
@@ -44,19 +44,19 @@ public class HomeFragment extends Fragment implements UpdateVerticalRec {
 
         //Ceviche RecuyclerView
 
-        homeCevicheModelList = new ArrayList<>();
+        homeHorModelList = new ArrayList<>();
 
 
         //Colocar la respectiva carta a elegir
-        homeCevicheModelList.add(new HomeCevicheModel(R.drawable.ceviches_img,"Ceviches"));
-        homeCevicheModelList.add(new HomeCevicheModel(R.drawable.combos_img,"Combos"));
-        homeCevicheModelList.add(new HomeCevicheModel(R.drawable.menus_img,"Menus"));
-        homeCevicheModelList.add(new HomeCevicheModel(R.drawable.bebidas_img,"Bebidas"));
+        homeHorModelList.add(new HomeHorModel(R.drawable.ceviches_img,"Ceviches"));
+        homeHorModelList.add(new HomeHorModel(R.drawable.combos_img,"Combos"));
+        homeHorModelList.add(new HomeHorModel(R.drawable.menus_img,"Menus"));
+        homeHorModelList.add(new HomeHorModel(R.drawable.bebidas_img,"Bebidas"));
 
 
 
 
-        homeCevicheAdapter = new HomeCevicheAdapter(this, getActivity(), homeCevicheModelList,new HomeCevicheAdapter.OnItemClickLister(){
+        homeCevicheAdapter = new HomeCevicheAdapter(this, getActivity(), homeHorModelList,new HomeCevicheAdapter.OnItemClickLister(){
             @Override
             public void OnItemClick(String Item) {
                 onItemSelected(Item);
