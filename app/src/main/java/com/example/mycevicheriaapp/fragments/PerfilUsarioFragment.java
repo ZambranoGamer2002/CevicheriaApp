@@ -1,6 +1,7 @@
 package com.example.mycevicheriaapp.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,8 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.example.mycevicheriaapp.R;
+import com.example.mycevicheriaapp.activities.EditarPerfilActivity;
+import com.example.mycevicheriaapp.activities.RegisterActivity;
 
 public class PerfilUsarioFragment extends Fragment {
 
@@ -103,5 +106,7 @@ public class PerfilUsarioFragment extends Fragment {
         if (!clieUsuaId.isEmpty()) {
             txtClieUsuaId.setText(clieUsuaId);
         }
+    }
+    public void irEditar(View view) {
     }
 }
