@@ -1,7 +1,5 @@
 package com.example.mycevicheriaapp.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,19 +8,25 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.mycevicheriaapp.conexion.ConexionAPI;
 import com.example.mycevicheriaapp.MainActivity;
 import com.example.mycevicheriaapp.R;
+import com.example.mycevicheriaapp.core.ConexionAPI;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -37,8 +41,8 @@ public class LoginActivity extends AppCompatActivity {
         iniciarLoginActivity();
     }
 
-    private void iniciarLoginActivity(){
-        txtUsername = findViewById (R.id.txtUsuario);
+    private void iniciarLoginActivity() {
+        txtUsername = findViewById(R.id.txtUsuario);
         txtPass = findViewById(R.id.txtContra);
 
         context = getApplicationContext();
@@ -54,6 +58,7 @@ public class LoginActivity extends AppCompatActivity {
 
         super.onPause();
     }
+
     public void iniciarSesion(View vista) {
 
         String usuario = txtUsername.getText().toString().trim();
@@ -73,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
                             JSONArray arreglo = new JSONArray(valor);
                             JSONObject objeto = new JSONObject(arreglo.get(0).toString());
 
-                            String usuarioBd = objeto.getString("usa_usanombre");
+                            String usuarioBd = objeto.getString("usa_id");
                             guardarDatosUsuario(usuarioBd);
 
                             //A donde quiero que se vaya
@@ -106,18 +111,69 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("MisDatosUsuario", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        // Guardar el nombre de usuario en SharedPreferences
-        editor.putString("usuario", usuarioBd);
+        String url = ConexionAPI.URL_BASE + "cliente/" + usuarioBd;
 
-        // Puedes guardar más datos del usuario aquí según tus necesidades
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.GET,
+                url,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            String valor = response.get("Detalles").toString();
+                            JSONArray arreglo = new JSONArray(valor);
+                            JSONObject objeto = new JSONObject(arreglo.get(0).toString());
 
-        editor.apply();  // Aplicar cambios
+                            String usuarioNombre = objeto.getString("usa_usanombre");
+                            String clienteCorreo = objeto.getString("clie_correo");
+                            String clienApellidos = objeto.getString("clien_apellidos");
+                            String clienteDNI = objeto.getString("clien_dni");
+                            String clienCelular = objeto.getString("clien_celular");
+                            String clienGenero = objeto.getString("clien_genero");
+
+                            // Guardar el nombre de usuario en SharedPreferences
+                            editor.putString("usuarioNombrePf", usuarioNombre);
+                            editor.putString("clienApellidosPf", clienApellidos);
+                            editor.putString("clienteCorreoPf", clienteCorreo);
+                            editor.putString("clienteDNIPf", clienteDNI);
+                            editor.putString("clienCelularPf", clienCelular);
+                            editor.putString("clienGeneroPf", clienGenero);
+
+                            // Puedes guardar más datos del usuario aquí según tus necesidades
+
+                            editor.apply();  // Aplicar cambios
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), "Datos incorrectos", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(), "Error en la red", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+
+
+        ) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> params = new HashMap<String, String>();
+                params.put("Authorization", ConexionAPI.AUTH);
+                return params;
+            }
+        };
+        requestQueue.add(jsonObjectRequest);
+
     }
-
 
     public void pasarRegister(View view) {
-
-        startActivity(new Intent(this, RegisterActivity.class ));
-
+        startActivity(new Intent(this, RegisterActivity.class));
     }
+
 }

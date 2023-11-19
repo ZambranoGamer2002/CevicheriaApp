@@ -1,7 +1,6 @@
 package com.example.mycevicheriaapp.fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,8 +13,6 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.example.mycevicheriaapp.R;
-import com.example.mycevicheriaapp.activities.EditarPerfilActivity;
-import com.example.mycevicheriaapp.activities.RegisterActivity;
 
 public class PerfilUsarioFragment extends Fragment {
 
@@ -24,7 +21,6 @@ public class PerfilUsarioFragment extends Fragment {
     private Button btnEditarPerfil;
 
     public PerfilUsarioFragment() {
-
 
 
     }
@@ -61,6 +57,8 @@ public class PerfilUsarioFragment extends Fragment {
                 // Puedes abrir una nueva actividad o fragmento para la edición del perfil
             }
         });
+
+        loadData();
 
         return view;
     }
@@ -107,6 +105,17 @@ public class PerfilUsarioFragment extends Fragment {
             txtClieUsuaId.setText(clieUsuaId);
         }
     }
+
     public void irEditar(View view) {
     }
+
+    private void loadData() {
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MisDatosUsuario", Context.MODE_PRIVATE);
+        txtNombres.setText(sharedPreferences.getString("usuarioNombrePf", ""));
+        txtApellidos.setText(sharedPreferences.getString("clienApellidosPf", ""));
+        txtDNI.setText(sharedPreferences.getString("clienteDNIPf", ""));
+        txtGenero.setText(sharedPreferences.getString("clienGeneroPf", ""));
+        numCelular.setText(sharedPreferences.getString("clienCelularPf", ""));
+    }
+
 }

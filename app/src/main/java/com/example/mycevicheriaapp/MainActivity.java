@@ -1,9 +1,12 @@
 package com.example.mycevicheriaapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
 
 import com.example.mycevicheriaapp.activities.BienvenidoActivity;
 import com.google.android.material.snackbar.Snackbar;
@@ -22,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
+
+
+    private static final String SHARED_PREFERENCE = "cevicheApp";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +52,14 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
+        View hearder = binding.navView.getHeaderView(0);
+        TextView myName = hearder.findViewById(R.id.tvNombreUsuario);
+        TextView myEmail = hearder.findViewById(R.id.tvCorreoUsuario);
+        SharedPreferences sharedPreferences = this.getSharedPreferences("MisDatosUsuario", Context.MODE_PRIVATE);
+        myName.setText(sharedPreferences.getString("usuarioNombrePf", ""));
+        myEmail.setText(sharedPreferences.getString("clienteCorreoPf", ""));
+
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -63,8 +74,11 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
     public void bienvenido(View view) {
         startActivity(new Intent(this, BienvenidoActivity.class ));
 
     }
+
+
 }

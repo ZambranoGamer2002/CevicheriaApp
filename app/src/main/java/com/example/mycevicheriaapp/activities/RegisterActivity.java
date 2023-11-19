@@ -1,8 +1,5 @@
 package com.example.mycevicheriaapp.activities;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,6 +8,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -18,8 +18,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.mycevicheriaapp.conexion.ConexionAPI;
 import com.example.mycevicheriaapp.R;
+import com.example.mycevicheriaapp.core.ConexionAPI;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,16 +30,17 @@ import java.util.Map;
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText clienteIdTxt,
-                    usuariTxt,
-                    contraUsuario,
-                    nombresTxt,
-                    apellidoTxt,
-                    imagenImg,
-                    dniTxt,
-                    correoTxt,
-                    celularTxt,
-                    generoTxt;
+            usuariTxt,
+            contraUsuario,
+            nombresTxt,
+            apellidoTxt,
+            imagenImg,
+            dniTxt,
+            correoTxt,
+            celularTxt,
+            generoTxt;
     RequestQueue requestQueue;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +49,6 @@ public class RegisterActivity extends AppCompatActivity {
         iniciarRegistrarUsuarioActivity();
 
 
-        
     }
 
     private void iniciarRegistrarUsuarioActivity() {
@@ -66,6 +66,7 @@ public class RegisterActivity extends AppCompatActivity {
         // instancioando el objeto
         requestQueue = Volley.newRequestQueue(this);
     }
+
     @Override
     protected void onPause() {
         // Limpiar los campos
@@ -82,7 +83,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         super.onPause();
     }
-    public void registrarUsuarioCliente(View view){
+
+    public void registrarUsuarioCliente(View view) {
         // Obtener los valores de los campos
         String usuario = usuariTxt.getText().toString().trim();
         String contrasena = contraUsuario.getText().toString().trim();
@@ -106,7 +108,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     // Método para registrar el usuario
-    public void registrarUsuario(){
+    public void registrarUsuario() {
         String url = ConexionAPI.URL_BASE + "usuario";
 
         StringRequest request = new StringRequest(
@@ -122,13 +124,6 @@ public class RegisterActivity extends AppCompatActivity {
 
                             // Obtén el objeto "credenciales" del objeto principal
                             JSONObject credencialesObject = jsonObject.getJSONObject("credenciales");
-
-                            // Obtén el valor de "usua_id" del objeto "credenciales"
-                            usuaId = credencialesObject.getString("usua_id");
-                            clienteIdTxt.setText(usuaId);
-
-                            // Guardar usua_id en SharedPreferences
-                            guardarUsuaIdEnSharedPreferences(usuaId);
 
                             // Una vez registrado el usuario con éxito, proceder con el registro del cliente
                             registrarCliente();
@@ -153,13 +148,13 @@ public class RegisterActivity extends AppCompatActivity {
 
                 }
 
-        ){
+        ) {
             //cargando los datos a enviar
             @Nullable
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
 
-                Map<String,String> parametros = new HashMap<>();
+                Map<String, String> parametros = new HashMap<>();
 
                 parametros.put("usa_tipousa_id", "5");
                 parametros.put("usa_usanombre", usuariTxt.getText().toString());
@@ -167,22 +162,15 @@ public class RegisterActivity extends AppCompatActivity {
 
                 return parametros;
             }
+
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError{
+            public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> params = new HashMap<String, String>();
                 params.put("Authorization", ConexionAPI.AUTH);
                 return params;
             }
         };
         requestQueue.add(request);
-    }
-
-    private void guardarUsuaIdEnSharedPreferences(String usuaId) {
-        SharedPreferences sharedPreferences = getSharedPreferences("MisDatosUsuario", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-
-        editor.putString("usua_id", usuaId);
-        editor.apply();
     }
 
     // Método para registrar el cliente
@@ -205,13 +193,13 @@ public class RegisterActivity extends AppCompatActivity {
                         //System.out.println(error.getMessage());
                     }
                 }
-        ){
+        ) {
             //cargando los datos a enviar
             @Nullable
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
 
-                Map<String,String> parametros = new HashMap<>();
+                Map<String, String> parametros = new HashMap<>();
 
                 parametros.put("clien_usua_id", clienteIdTxt.getText().toString());
                 parametros.put("clien_nombres", nombresTxt.getText().toString());
@@ -224,8 +212,9 @@ public class RegisterActivity extends AppCompatActivity {
 
                 return parametros;
             }
+
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError{
+            public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> params = new HashMap<String, String>();
                 params.put("Authorization", ConexionAPI.AUTH);
                 return params;
@@ -234,9 +223,8 @@ public class RegisterActivity extends AppCompatActivity {
         requestQueue.add(request);
     }
 
-
     public void login(View view) {
-        startActivity(new Intent(this,LoginActivity.class ));
+        startActivity(new Intent(this, LoginActivity.class));
 
     }
 

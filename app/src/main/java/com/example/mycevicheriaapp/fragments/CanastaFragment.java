@@ -21,7 +21,7 @@ public class CanastaFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View view  =inflater.inflate(R.layout.fragment_canasta, container, false);
+        View view = inflater.inflate(R.layout.fragment_canasta, container, false);
 
         radioGroup = view.findViewById(R.id.radioGroup);
         RadioButton radioYape = view.findViewById(R.id.radioYape);

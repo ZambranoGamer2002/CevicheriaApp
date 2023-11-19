@@ -1,16 +1,14 @@
 package com.example.mycevicheriaapp.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.mycevicheriaapp.R;
-import com.example.mycevicheriaapp.activities.LoginActivity;
-import com.example.mycevicheriaapp.activities.RegisterActivity;
 
 public class BienvenidoActivity extends AppCompatActivity {
 
@@ -23,14 +21,14 @@ public class BienvenidoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_bienvenido);
     }
 
-    public void registrarce (View view) {
+    public void registrarce(View view) {
 
-        startActivity(new Intent(this, RegisterActivity.class ));
+        startActivity(new Intent(this, RegisterActivity.class));
 
     }
 
     public void login(View view) {
-        startActivity(new Intent(this, LoginActivity.class ));
+        startActivity(new Intent(this, LoginActivity.class));
 
     }
 }

@@ -12,8 +12,8 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mycevicheriaapp.R;
-import com.example.mycevicheriaapp.models.HomeHorModel;
-import com.example.mycevicheriaapp.models.HomeVerModel;
+import com.example.mycevicheriaapp.data.model.HomeHorModel;
+import com.example.mycevicheriaapp.data.model.HomeVerModel;
 
 import java.util.ArrayList;
 
@@ -23,7 +23,10 @@ public class HomeCevicheAdapter extends RecyclerView.Adapter<HomeCevicheAdapter.
     Activity activity;
     ArrayList<HomeHorModel> list;
 
-    public interface OnItemClickLister {void OnItemClick(String Item);}
+    public interface OnItemClickLister {
+        void OnItemClick(String Item);
+    }
+
     int row_index = -1;
 
     OnItemClickLister listener;

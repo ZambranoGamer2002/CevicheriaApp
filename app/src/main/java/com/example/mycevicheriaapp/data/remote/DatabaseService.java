@@ -1,6 +1,6 @@
-package com.example.mycevicheriaapp.conexion;
+package com.example.mycevicheriaapp.data.remote;
 
-import com.example.mycevicheriaapp.models.HomeVerModel;
+import com.example.mycevicheriaapp.data.model.HomeVerModel;
 
 import java.util.List;
 
