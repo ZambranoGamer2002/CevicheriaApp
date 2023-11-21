@@ -65,6 +65,7 @@ public class PerfilUsarioFragment extends Fragment {
 
     private void mostrarDatosUsuario() {
         // Obtener datos del SharedPreferences
+
         String nombres = sharedPreferences.getString("nombres", "");
         String apellidos = sharedPreferences.getString("apellidos", "");
         String dni = sharedPreferences.getString("dni", "");
@@ -73,6 +74,8 @@ public class PerfilUsarioFragment extends Fragment {
         String clieUsuaId = sharedPreferences.getString("clieUsuaId", "");
 
         // Log para verificar los datos obtenidos desde SharedPreferences
+
+
         Log.d("PerfilUsarioFragment", "Nombres: " + nombres);
         Log.d("PerfilUsarioFragment", "Apellidos: " + apellidos);
         Log.d("PerfilUsarioFragment", "DNI: " + dni);
@@ -81,6 +84,8 @@ public class PerfilUsarioFragment extends Fragment {
         Log.d("PerfilUsarioFragment", "clieUsuaId: " + clieUsuaId);
 
         // Mostrar datos en las vistas solo si no son nulos o vacíos
+
+
         if (!nombres.isEmpty()) {
             txtNombres.setText(nombres);
         }
@@ -111,6 +116,7 @@ public class PerfilUsarioFragment extends Fragment {
 
     private void loadData() {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MisDatosUsuario", Context.MODE_PRIVATE);
+
         txtNombres.setText(sharedPreferences.getString("usuarioNombrePf", ""));
         txtApellidos.setText(sharedPreferences.getString("clienApellidosPf", ""));
         txtDNI.setText(sharedPreferences.getString("clienteDNIPf", ""));

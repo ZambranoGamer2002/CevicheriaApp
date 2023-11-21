@@ -125,6 +125,7 @@ public class LoginActivity extends AppCompatActivity {
                             JSONArray arreglo = new JSONArray(valor);
                             JSONObject objeto = new JSONObject(arreglo.get(0).toString());
 
+
                             String usuarioNombre = objeto.getString("usa_usanombre");
                             String clienteCorreo = objeto.getString("clie_correo");
                             String clienApellidos = objeto.getString("clien_apellidos");
