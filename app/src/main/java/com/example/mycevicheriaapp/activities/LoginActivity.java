@@ -125,7 +125,7 @@ public class LoginActivity extends AppCompatActivity {
                             JSONArray arreglo = new JSONArray(valor);
                             JSONObject objeto = new JSONObject(arreglo.get(0).toString());
 
-
+                            String clieId = objeto.getString("clien_id");
                             String usuarioNombre = objeto.getString("usa_usanombre");
                             String clienteCorreo = objeto.getString("clie_correo");
                             String clienApellidos = objeto.getString("clien_apellidos");
@@ -134,6 +134,7 @@ public class LoginActivity extends AppCompatActivity {
                             String clienGenero = objeto.getString("clien_genero");
 
                             // Guardar el nombre de usuario en SharedPreferences
+                            editor.putString("clienIdPf", clieId);
                             editor.putString("usuarioNombrePf", usuarioNombre);
                             editor.putString("clienApellidosPf", clienApellidos);
                             editor.putString("clienteCorreoPf", clienteCorreo);

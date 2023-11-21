@@ -15,6 +15,12 @@
         android:theme="@style/Theme.MyCevicheriaApp"
         tools:targetApi="31">
         <activity
+            android:name=".activities.ReservaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.EleccionMesaActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.EditarPerfilActivity"
             android:exported="false" />
         <activity
@@ -36,11 +42,12 @@
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.MyCevicheriaApp.NoActionBar"></activity>
+            android:theme="@style/Theme.MyCevicheriaApp.NoActionBar" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
     </application>
 
 </manifest>

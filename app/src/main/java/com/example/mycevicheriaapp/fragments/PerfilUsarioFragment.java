@@ -22,13 +22,10 @@ public class PerfilUsarioFragment extends Fragment {
 
     public PerfilUsarioFragment() {
 
-
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_pefil_usario, container, false);
 
         // Obtener la instancia de SharedPreferences

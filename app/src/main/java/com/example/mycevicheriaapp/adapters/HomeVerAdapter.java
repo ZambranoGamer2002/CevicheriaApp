@@ -15,14 +15,15 @@ import com.example.mycevicheriaapp.R;
 import com.example.mycevicheriaapp.data.model.HomeVerModel;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HomeVerAdapter extends RecyclerView.Adapter<HomeVerAdapter.ViewHolder> {
 
     Context context;
 
-    private final List<HomeVerModel> homeVerModels;
-    private final LayoutInflater nInflater;
+    private List<HomeVerModel> homeVerModels;
+    private LayoutInflater nInflater;
 
     public HomeVerAdapter(Context context, List<HomeVerModel> homeVerModels) {
         this.context = context;
@@ -33,8 +34,12 @@ public class HomeVerAdapter extends RecyclerView.Adapter<HomeVerAdapter.ViewHold
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_vertical_plato, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.home_vertical_plato, parent, false);
         return new ViewHolder(view);
+    }
+    public void updateList(List<HomeVerModel> newlist){
+        homeVerModels = newlist;
+        this.notifyDataSetChanged();
     }
 
     @Override
@@ -45,7 +50,7 @@ public class HomeVerAdapter extends RecyclerView.Adapter<HomeVerAdapter.ViewHold
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, HomeCevicheAdapter.class);
+                Intent intent = new Intent(context, HomeHorAdapter.class);
 
                 //Poner detalles de los platos como extras en el Intent
 
@@ -65,6 +70,19 @@ public class HomeVerAdapter extends RecyclerView.Adapter<HomeVerAdapter.ViewHold
     @Override
     public int getItemCount() {
         return homeVerModels.size();
+    }
+
+    public void filtrar(String tipo) {
+        ArrayList<HomeVerModel> listaFiltrada = new ArrayList<>();
+        HomeVerModel[] listaCompleta = new HomeVerModel[0];
+        for (HomeVerModel modelo : listaCompleta) {
+            if (modelo.getTipoPlatoId().equals(tipo)) {
+                listaFiltrada.add(modelo);
+            }
+        }
+        homeVerModels.clear();
+        homeVerModels.addAll(listaFiltrada);
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

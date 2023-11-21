@@ -12,7 +12,7 @@ public class HomeVerModel implements Serializable {
     private int imagePlato;
 
 
-    public HomeVerModel(String platoId, String namePlato, String descripcionPlato, String precioPlato, String tipoPlatoId, int imagePlato) {
+    public HomeVerModel(String platoId, String namePlato, String descripcionPlato, String precioPlato, String tipoPlatoId) {
 
         this.platoId = platoId;
         this.namePlato = namePlato;
