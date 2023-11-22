@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,7 +33,7 @@ import com.example.mycevicheriaapp.adapters.HomeVerAdapter;
 import com.example.mycevicheriaapp.adapters.PlatoAdapterRecycler;
 import com.example.mycevicheriaapp.adapters.UpdateVerticalRec;
 import com.example.mycevicheriaapp.core.ConexionAPI;
-import com.example.mycevicheriaapp.data.model.Platos;
+import com.example.mycevicheriaapp.data.model.PlatoModel;
 import com.example.mycevicheriaapp.databinding.FragmentHomeBinding;
 import com.example.mycevicheriaapp.data.model.HomeHorModel;
 import com.example.mycevicheriaapp.data.model.HomeVerModel;
@@ -63,7 +64,7 @@ public class HomeFragment extends Fragment implements UpdateVerticalRec {
     //Vertical
     ArrayList<HomeVerModel> homeVerModelList = new ArrayList<>();
 
-    private List<Platos> listaPlatos;
+    private List<PlatoModel> listaPlatoes;
     private FragmentHomeBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -80,20 +81,25 @@ public class HomeFragment extends Fragment implements UpdateVerticalRec {
         recyclerViewTypeCeviche(root);
         //Ceviche RecuyclerView
         //recyclerViewTypeCeviche();
-        loadData();
 
         return root;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        loadData();
     }
 
     private void iniciarRecyclerViewProductos(View rootView) {
 
         //listaFiltrada = new ArrayList<>();
 
-        listaPlatos = new ArrayList<>();
+        listaPlatoes = new ArrayList<>();
 
         homeVerticalRec = rootView.findViewById(R.id.home_ver_rec);
         homeVerticalRec.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false));
-        platoAdapterRecycler = new PlatoAdapterRecycler(listaPlatos);
+        platoAdapterRecycler = new PlatoAdapterRecycler(listaPlatoes);
         homeVerticalRec.setAdapter(platoAdapterRecycler);
         cargarListaPlatos();
 
@@ -131,12 +137,12 @@ public class HomeFragment extends Fragment implements UpdateVerticalRec {
 
                                 // Toast.makeText(getApplicationContext(), "hola", Toast.LENGTH_SHORT).show();
 
-                                Platos plato = new Platos(platoId, platiTipoPlatoId, platoNombre, pedidoDescrip, platoPrecio, platoFoto, getPlatiTipoPlatoId,tipoPlatoNombre);
+                                PlatoModel plato = new PlatoModel(platoId, platiTipoPlatoId, platoNombre, pedidoDescrip, platoPrecio, platoFoto, getPlatiTipoPlatoId,tipoPlatoNombre);
                                 ///String tipoEspecifico = "1";
                                 //if (producto.getProdId().equals(tipoEspecifico)) {
-                                listaPlatos.add(plato);
+                                listaPlatoes.add(plato);
                                 //
-                                platoAdapterRecycler.notifyItemRangeInserted(listaPlatos.size(),1);
+                                platoAdapterRecycler.notifyItemRangeInserted(listaPlatoes.size(),1);
                             }
 
                         } catch (JSONException e) {
@@ -171,8 +177,8 @@ public class HomeFragment extends Fragment implements UpdateVerticalRec {
                 String clieIdRecibido = preferences.getString("clieId", "No existe la información");
 
 
-                    Intent vistaSaltar = new Intent(requireContext(), EleccionMesaActivity.class);
-                    startActivity(vistaSaltar);
+                Intent vistaSaltar = new Intent(requireContext(), EleccionMesaActivity.class);
+                startActivity(vistaSaltar);
             }
         });
     }
@@ -274,8 +280,8 @@ public class HomeFragment extends Fragment implements UpdateVerticalRec {
     }
 
     private void loadData() {
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MisDatosUsuario", Context.MODE_PRIVATE);
-        txtUser.setText(sharedPreferences.getString("usuario", ""));
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("MisDatosUsuario", Context.MODE_PRIVATE);
+        txtUser.setText(sharedPreferences.getString("usuarioNombrePf", ""));
     }
 
     @Override

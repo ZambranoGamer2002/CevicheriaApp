@@ -1,6 +1,6 @@
 package com.example.mycevicheriaapp.data.model;
 
-public class Platos {
+public class PlatoModel {
     private String platoId;
     private String platiTipoPlatoId;
     private String platoNombre;
@@ -10,7 +10,7 @@ public class Platos {
     private String getPlatiTipoPlatoId;
     private String tipoPlatoNombre;
 
-    public Platos(String platoId, String platiTipoPlatoId, String platoNombre, String pedidoDescrip, String platoPrecio, String platoFoto, String getPlatiTipoPlatoId, String tipoPlatoNombre) {
+    public PlatoModel(String platoId, String platiTipoPlatoId, String platoNombre, String pedidoDescrip, String platoPrecio, String platoFoto, String getPlatiTipoPlatoId, String tipoPlatoNombre) {
         this.platoId = platoId;
         this.platiTipoPlatoId = platiTipoPlatoId;
         this.platoNombre = platoNombre;

@@ -78,11 +78,12 @@ public class EleccionMesaActivity extends AppCompatActivity {
 
                                 String mesaId = objeto.getString("mesa_id");
                                 String mesaRestId = objeto.getString("mesa_resta_id");
+                                String mesaEstado = objeto.getString("mesa_estado");
                                 String mesaNumero = objeto.getString("mesa_numero");
                                 String mesaCantidadPersonas = objeto.getString("mesa_cantidad_asientos");
-                                String mesaEstado = objeto.getString("mesa_estado");
 
-                                HomeMesas mesa = new HomeMesas(mesaId, mesaRestId, mesaNumero, mesaCantidadPersonas, mesaEstado);
+
+                                HomeMesas mesa = new HomeMesas(mesaId, mesaRestId, mesaEstado, mesaNumero, mesaCantidadPersonas);
 
                                 mesas.add(mesa);
                                 homeMesaAdapter.notifyItemRangeInserted(mesas.size(), 1);

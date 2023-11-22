@@ -31,8 +31,7 @@ public class HomeMesaAdapter extends RecyclerView.Adapter<HomeMesaAdapter.MyView
 
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        //View view = LayoutInflater.from(context).inflate(R.layout.list_element, parent, false);
-        View view = nInflater.inflate(R.layout.list_mesa, null);
+        View view = nInflater.inflate(R.layout.listar_las_mesa, null);
         return new MyViewHolder(view);
     }
 

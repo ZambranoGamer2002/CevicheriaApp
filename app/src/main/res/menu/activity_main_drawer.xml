@@ -11,10 +11,6 @@
             android:icon="@drawable/home"
             android:title="@string/menu_home" />
         <item
-            android:id="@+id/nav_reservar"
-            android:icon="@drawable/reservar"
-            android:title="@string/reservar" />
-        <item
             android:id="@+id/nav_canasta"
             android:icon="@drawable/canasta"
             android:title="@string/mi_canasta" />

@@ -1,7 +1,6 @@
 package com.example.mycevicheriaapp.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,16 +13,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.GranularRoundedCorners;
 import com.example.mycevicheriaapp.R;
-import com.example.mycevicheriaapp.data.model.Platos;
+import com.example.mycevicheriaapp.data.model.PlatoModel;
 
 import java.util.List;
 
 public class PlatoAdapterRecycler extends RecyclerView.Adapter<PlatoAdapterRecycler.ViewHolder>  {
     Context context;
-    List<Platos> listaPlatos;
+    List<PlatoModel> listaPlatoes;
 
-    public PlatoAdapterRecycler(List<Platos> listaPlatos){
-        this.listaPlatos = listaPlatos;
+    public PlatoAdapterRecycler(List<PlatoModel> listaPlatoes){
+        this.listaPlatoes = listaPlatoes;
     }
     @NonNull
     @Override
@@ -35,10 +34,10 @@ public class PlatoAdapterRecycler extends RecyclerView.Adapter<PlatoAdapterRecyc
 
     @Override
     public void onBindViewHolder(@NonNull PlatoAdapterRecycler.ViewHolder holder, int position) {
-        holder.nombrePlato.setText(listaPlatos.get(position).getPlatoNombre());
-        holder.descripPlato.setText(listaPlatos.get(position).getPedidoDescrip());
-        holder.precioPlato.setText("S/. " + listaPlatos.get(position).getPlatoPrecio());
-        String imageUrl = listaPlatos.get(position).getPlatoFoto();
+        holder.nombrePlato.setText(listaPlatoes.get(position).getPlatoNombre());
+        holder.descripPlato.setText(listaPlatoes.get(position).getPedidoDescrip());
+        holder.precioPlato.setText("S/. " + listaPlatoes.get(position).getPlatoPrecio());
+        String imageUrl = listaPlatoes.get(position).getPlatoFoto();
 
         Glide.with(holder.itemView.getContext())
                 .load(imageUrl)
@@ -58,7 +57,7 @@ public class PlatoAdapterRecycler extends RecyclerView.Adapter<PlatoAdapterRecyc
 
     @Override
     public int getItemCount() {
-        return listaPlatos.size();
+        return listaPlatoes.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
