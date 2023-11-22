@@ -3,7 +3,6 @@ package com.example.mycevicheriaapp.adapters;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,15 +11,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mycevicheriaapp.R;
 import com.example.mycevicheriaapp.activities.ReservaActivity;
 import com.example.mycevicheriaapp.data.model.HomeMesas;
-import com.example.mycevicheriaapp.fragments.ReservasFragment;
 
 import java.util.List;
 
@@ -52,25 +47,11 @@ public class HomeMesaAdapter extends RecyclerView.Adapter<HomeMesaAdapter.MyView
 
                 Toast.makeText(view.getContext(),"Seleccionaste la mesa" + mesa.get(position).getMesaNumero(),Toast.LENGTH_LONG).show();
 
-                /*Intent intent = new Intent(holder.itemView.getContext(), ReservasFragment.class);
+                Intent intent = new Intent(holder.itemView.getContext(), ReservaActivity.class);
 
                 intent.putExtra("mesa", mesa.get(position));
 
-                holder.itemView.getContext().startActivity(intent);*/
-                // Crear un Bundle para los datos a enviar al fragmento
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("mesa", mesa.get(position)); // Aquí asumo que "mesa" es Serializable
-
-// Crear una instancia del fragmento y asignarle los datos
-                ReservasFragment fragment = new ReservasFragment();
-                fragment.setArguments(bundle);
-
-// Iniciar una transacción de fragmento y mostrar el fragmento
-                FragmentManager fragmentManager = ((FragmentActivity) holder.itemView.getContext()).getSupportFragmentManager();
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.replace(R.id.nav_host_fragment_content_main, fragment); // R.id.contenedor_fragment es el ID del contenedor donde se mostrará el fragmento
-                transaction.addToBackStack(null); // Opcional: permite agregar a la pila de retroceso
-                transaction.commit();
+                holder.itemView.getContext().startActivity(intent);
 
             }
         });

@@ -74,7 +74,7 @@ public class HomeFragment extends Fragment implements UpdateVerticalRec {
 
         txtUser = root.findViewById(R.id.tvUserLogin);
 
-        //pasarVistaDeLaReserva(root);
+        pasarVistaDeLaReserva(root);
         iniciarRecyclerViewProductos(root);
         cargarPlatosDesdeBaseDeDatos("5");
         recyclerViewTypeCeviche(root);
@@ -162,7 +162,20 @@ public class HomeFragment extends Fragment implements UpdateVerticalRec {
 
         requestQueue.add(requerimiento);
     }
+    public void pasarVistaDeLaReserva(View rootView) {
+        pasarVistaReserva = rootView.findViewById(R.id.btnAccionReservar);
+        pasarVistaReserva.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences preferences = requireContext().getSharedPreferences("Credenciales", Context.MODE_PRIVATE);
+                String clieIdRecibido = preferences.getString("clieId", "No existe la información");
 
+
+                    Intent vistaSaltar = new Intent(requireContext(), EleccionMesaActivity.class);
+                    startActivity(vistaSaltar);
+            }
+        });
+    }
 
     private void cargarPlatosDesdeBaseDeDatos(String tipoPlato) {
         String url = Uri.parse(ConexionAPI.URL_BASE + "plato").buildUpon().build().toString();
